@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label, select, input {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .save-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .home-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <form id="registrationForm">
+        <h2>Student Registration Form</h2>
+
+        <label for="college">College Name:</label>
+        <select id="college" name="college" required>
+            <option value="">Select your college</option>
+            <option value="SMIC">SMIC</option>
+            <option value="SMEC">SMEC</option>
+            <option value="SMGIOH">SMGIOH</option>
+        </select>
+
+        <label for="branch">Branch:</label>
+        <select id="branch" name="branch" required>
+            <option value="">Select your branch</option>
+            <option value="CSE">CSE</option>
+            <option value="AIML">AIML</option>
+            <option value="AIDS">AIDS</option>
+        </select>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="hall_ticket">Hall Ticket Number:</label>
+        <input type="text" id="hall_ticket" name="hall_ticket" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <div class="buttons">
+            <button type="button" class="save-btn" onclick="saveData()">Save</button>
+            <button type="button" class="home-btn" onclick="goHome()">Home</button>
+        </div>
+    </form>
+
+    <script>
+        // Save form data to local storage
+        function saveData() {
+            const college = document.getElementById('college').value;
+            const branch = document.getElementById('branch').value;
+            const name = document.getElementById('name').value;
+            const hallTicket = document.getElementById('hall_ticket').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (college && branch && name && hallTicket && email && phone) {
+                const studentData = {
+                    college,
+                    branch,
+                    name,
+                    hallTicket,
+                    email,
+                    phone
+                };
+
+                localStorage.setItem('studentData', JSON.stringify(studentData));
+                alert('Data saved successfully!');
+            } else {
+                alert('Please fill in all the fields.');
+            }
+        }
+
+        // Navigate to home page
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
